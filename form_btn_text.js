@@ -1,18 +1,13 @@
-document.addEventListener("DOMContentLoaded", () => {
-
+export function formBtnTextInit() {
     let formBtns = document.querySelectorAll(".fwd-landing-send-btn");
 
-    // if they exist, look through each form submission button
     if (formBtns.length > 0) {
-
         formBtns.forEach((btn) => {
-
             if (btn.hasAttribute('disabled') || btn.disabled) {
                 let btnText = btn.value;
 
                 // replace default text with placeholder load text
                 btn.value = "Please wait...";
-
 
                 // callback function that will be called when mutations are observed
                 const callback = function (mutationsList) {
@@ -35,5 +30,4 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-
-}); //--doc ready
+}

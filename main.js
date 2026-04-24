@@ -1,22 +1,23 @@
-console.log("Running PRD scripts");
-//Smopothscroller
-gsap.registerPlugin(ScrollTrigger);
-gsap.config({
-    nullTargetWarn: false,
-    autoSleep: 60
-});
+export function mainInit() {
 
-// disable browser scroll restoration default
-if (history.scrollRestoration || window.history.scrollRestoration || 'scrollRestoration' in history) {
-    history.scrollRestoration = "manual";
-    window.history.scrollRestoration = "manual";
-}
+    const bodyEl = document.querySelector("body");
 
-let goingToAnchor = false;
+    //Smopothscroller
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.config({
+        nullTargetWarn: false,
+        autoSleep: 60
+    });
 
-let lenis;
+    // disable browser scroll restoration default
+    if (history.scrollRestoration || window.history.scrollRestoration || 'scrollRestoration' in history) {
+        history.scrollRestoration = "manual";
+        window.history.scrollRestoration = "manual";
+    }
 
-document.addEventListener("DOMContentLoaded", () => {
+    let goingToAnchor = false;
+
+    let lenis;
 
     // check if loading from URL with anchor mention
     if (window.location.href.indexOf("#") > -1) {
@@ -26,12 +27,15 @@ document.addEventListener("DOMContentLoaded", () => {
         goingToAnchor = false;
     }
 
+    const cursorContainer = document.querySelector(".fwd-cursor-container");
+    const loader = document.querySelector(".fwd-loader");
+
     // Show Loader and Cursor Container on page load
-    if (document.querySelector(".fwd-cursor-container")) {
-        document.querySelector(".fwd-cursor-container").style.display = "block";
+    if (cursorContainer) {
+        cursorContainer.style.display = "block";
     }
-    if (document.querySelector(".fwd-loader")) {
-        document.querySelector(".fwd-loader").style.display = "block";
+    if (loader) {
+        loader.style.display = "block";
     }
 
     //--------------------------------------------------------------
@@ -61,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //-----------------------------------------------
 
     // Hide hero content container
-    let heroContentContainer = document.querySelector(".fwd-container.fwd-hero");
+    const heroContentContainer = document.querySelector(".fwd-container.fwd-hero");
     if (heroContentContainer) {
         heroContentContainer.style.opacity = 0;
     }
@@ -71,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ///////////////////////////////////////////////////////////////////////////
     // looks for opacity change in canvas container element (last element animation of sequence)
 
-    let target = document.querySelector(".fwd-hero-canvas-container");
+    const target = document.querySelector(".fwd-hero-canvas-container");
 
     // loader elements observer (keeps page overflow hidden until done)
     var observer = new MutationObserver(function () {
@@ -79,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
             observer.disconnect();
 
             setTimeout(() => {
-                document.querySelector("body").classList.remove("overflow-hidden");
+                bodyEl.classList.remove("overflow-hidden");
             }, 1100);
 
             setTimeout(() => {
@@ -93,7 +97,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // get session storage var - this var is initialized the moment a tab is opened for the first time
     let sessionInit = sessionStorage.getItem("sessionInit");
-    let loader = document.querySelector(".fwd-loader");
 
     // check if storage var exists - if it doesn't, then this is the first time the tab is loaded
     // show intro loader and init observer
@@ -109,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
         navbarReveal(0.2);
 
         if (loader) {
-            document.querySelector("body").classList.remove("overflow-hidden");
+            bodyEl.classList.remove("overflow-hidden");
 
             loader.style.display = "none";
             loader.remove();
@@ -121,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // NAVBAR REVEAL
     function navbarReveal(seconds) {
-        gsap.from(document.querySelectorAll(".fwd-navbar-el"), {
+        gsap.from(".fwd-navbar-el", {
             opacity: 0,
             y: "20%",
             stagger: 0.1,
@@ -181,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         onComplete: () => {
                             if (sessionInit === null) {
-                                document.querySelector("body").classList.remove("overflow-hidden");
+                                bodyEl.classList.remove("overflow-hidden");
                             }
                         }
                     },
@@ -193,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //-----------------------------------------------
     // Cursor Interaction
 
-    let cursor = document.querySelector(".fwd-cursor");
+    const cursor = document.querySelector(".fwd-cursor");
 
     // Remove Arrow icon for now
     if (cursor) {
@@ -268,7 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //--hover area
 
     // Update footer date
-    let spanInstances = document.querySelectorAll(".fwd-current-year");
+    const spanInstances = document.querySelectorAll(".fwd-current-year");
 
     spanInstances.forEach((span) => {
         span.innerHTML = new Date().getFullYear();
@@ -298,12 +301,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // setTimeout(() => {
     //     const policyAcceptBtn = document.querySelector(".cky-btn.cky-btn-accept");
     //     alert("policyAcceptBtn", policyAcceptBtn);
-        
+    //
     //     if (policyAcceptBtn) {
     //         policyAcceptBtn.addEventListener("click", function () {
     //             alert("btn clicked, policy accepted");
     //         });
     //     }
     // }, 4000);
-
-}); //--doc ready
+}

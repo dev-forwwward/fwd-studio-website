@@ -1,9 +1,9 @@
-document.addEventListener("DOMContentLoaded", () => {
-    let hasModalButton = document.querySelector(".has-modal-button");
-    let modalBtns = document.querySelectorAll(".fwd-button-modal");
+export function modalScriptInit() {
+    const hasModalButton = document.querySelector(".has-modal-button");
+    const modalBtns = document.querySelectorAll(".fwd-button-modal");
 
     if (modalBtns.length > 0) {
-        
+
         let originalContainer = document.querySelector(".fwd-landing-form-section > .fwd-container")
         let modalContainer = document.querySelector(".modal-container");
         let modal = null;
@@ -60,4 +60,4 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-});
+}

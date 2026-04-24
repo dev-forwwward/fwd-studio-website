@@ -1,7 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
-
-    // console.clear();
-    // console.log("Running hero-showreel.js (DEV)");
+export function heroShowreelInit() {
 
     // HERO VIDEO Scroll Interaction
     let videoWrapper = document.querySelector('.hero_video_wrapper');
@@ -197,21 +194,5 @@ document.addEventListener("DOMContentLoaded", () => {
             videoCursorContainer.classList.remove('visible');
         });
 
-        // videoContainer.addEventListener('mousemove', (e) => {
-        //     const rect = document.querySelector('.home-video-cursor-wrapper').getBoundingClientRect();
-        //     const x = e.clientX - rect.left;
-        //     const y = e.clientY - rect.top;
-
-        //     // Position the buttons centered on the cursor
-        //     gsap.to(videoCursorButtons, {
-        //         x: x,
-        //         y: y,
-        //         xPercent: -50,
-        //         yPercent: -50,
-        //         duration: 0.2,
-        //         ease: "power3.out"
-        //     });
-        // });
-
     } // if videoWrapper
-});
+}

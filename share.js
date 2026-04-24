@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+export function shareInit() {
     let fbShare = document.querySelectorAll(".social-facebook");
     let twShare = document.querySelectorAll(".social-twitter");
     let liShare = document.querySelectorAll(".social-linkedin");
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 e.preventDefault();
 
                 // share message for twitter
-                let t = "#forwwwardstudio" +"\n";
+                let t = "#forwwwardstudio" + "\n";
                 window.open('https://twitter.com/share?url=' + encodeURIComponent(location.href) + '&text=' + encodeURIComponent(t), 'twitsharer', 'toolbar=0,status=0,width=626,height=436');
             });
         });
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 // prevent default <a> redirect
                 e.preventDefault();
 
-                window.open('https://www.linkedin.com/sharing/share-offsite/?url={'+location.href+'}');
+                window.open('https://www.linkedin.com/sharing/share-offsite/?url={' + location.href + '}');
             });
         });
     }
@@ -63,5 +63,4 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
-
-}); //--doc ready
+}

@@ -1,6 +1,6 @@
 // ---- GSAP INIT
 //gsap.registerPlugin(ScrollTrigger);
-document.addEventListener("DOMContentLoaded", () => {
+export function revealsInit() {
 
     // Split text into words and characters
     const heading1Split = new SplitType(".fwd-h1", { types: "words, lines" });
@@ -628,13 +628,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
             );
 
-            tl.fromTo(
-                document.querySelectorAll(".fwd-collection-grid-item-image"),
-                1,
-                {
-                    xPercent: 100,
-                    opacity: 0,
-                },
+            tl.fromTo(".fwd-collection-grid-item-image", 1, {
+                xPercent: 100,
+                opacity: 0,
+            },
                 {
                     xPercent: 0,
                     opacity: 1,
@@ -658,12 +655,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         toggleActions: "play none play none",
                     },
                 })
-                .fromTo(
-                    document.querySelectorAll(".fwd-collection-grid-title-wrapper"),
-                    {
-                        opacity: 0,
-                        yPercent: 8,
-                    },
+                .fromTo(".fwd-collection-grid-title-wrapper", {
+                    opacity: 0,
+                    yPercent: 8,
+                },
                     {
                         opacity: 1,
                         yPercent: 0,
@@ -704,13 +699,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
             );
 
-            tl.fromTo(
-                document.querySelectorAll(".fwd-collection-grid-item-image"),
-                1,
-                {
-                    xPercent: 100,
-                    opacity: 0,
-                },
+            tl.fromTo(".fwd-collection-grid-item-image", 1, {
+                xPercent: 100,
+                opacity: 0,
+            },
                 {
                     xPercent: 0,
                     opacity: 1,
@@ -750,12 +742,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     ease: Power4.out,
                   },
                 )*/
-                .fromTo(
-                    document.querySelectorAll(".fwd-collection-grid-title-wrapper"),
-                    {
-                        opacity: 0,
-                        yPercent: 8,
-                    },
+                .fromTo(".fwd-collection-grid-title-wrapper", {
+                    opacity: 0,
+                    yPercent: 8,
+                },
                     {
                         opacity: 1,
                         yPercent: 0,
@@ -798,10 +788,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // Webflow Landing
-    if (document.querySelector(".fwd-landing-hero") && window.innerWidth >= 991) {
+    const landingHero = document.querySelector(".fwd-landing-hero");
+    if (landingHero && window.innerWidth >= 991) {
         gsap.timeline({
             scrollTrigger: {
-                trigger: document.querySelector(".fwd-landing-hero"),
+                trigger: landingHero,
                 start: "top top",
                 end: "bottom top",
                 scrub: true
@@ -824,7 +815,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }, "<");
     }
 
-    let beyondSection = document.querySelector(".fwd-beyond-section");
+    const beyondSection = document.querySelector(".fwd-beyond-section");
 
     if (beyondSection) {
         let beyondTexts = document.querySelectorAll(".fwd-beyond-section .fwd-h1-style");
@@ -1066,6 +1057,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     ScrollTrigger.refresh();
-
-
-}); //--doc ready
+}

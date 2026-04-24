@@ -5,8 +5,7 @@ let revealJump = 2;
 let initialReveal = 10;
 let i = 0;
 
-document.addEventListener("DOMContentLoaded", () => {
-
+export function projectListInit() {
   let cases = document.querySelectorAll(".fwd-collection-grid-item");
 
   // convert faq rows node list into array
@@ -126,16 +125,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // listen for project list opacity changes (means project list change)
   // run reveal sequence if true
-  if (document.querySelector(".fwd-collection-grid-image-wrapper")) {
+  const workImgWrapper = document.querySelectorAll(".fwd-collection-grid-image-wrapper");
+
+  if (workImgWrapper.length > 0) {
+
     let elRevealed = false;
     var observer = new MutationObserver(function (mutations) {
+
       mutations.forEach(function (mutation) {
         if (targetNode.style.opacity <= 0) {
           elRevealed = true;
 
-          let workImgWrapper = document.querySelectorAll(
-            ".fwd-collection-grid-image-wrapper",
-          );
           if (workImgWrapper && elRevealed) {
             elRevealed = false;
 
@@ -160,13 +160,10 @@ document.addEventListener("DOMContentLoaded", () => {
               },
             );
 
-            tl.fromTo(
-              document.querySelectorAll(".fwd-collection-grid-item-image"),
-              1,
-              {
-                xPercent: 100,
-                opacity: 0,
-              },
+            tl.fromTo(".fwd-collection-grid-item-image", 1, {
+              xPercent: 100,
+              opacity: 0,
+            },
               {
                 xPercent: 0,
                 opacity: 1,
@@ -196,12 +193,10 @@ document.addEventListener("DOMContentLoaded", () => {
                   ease: Power4.out,
                 },
               )
-              .fromTo(
-                document.querySelectorAll(".fwd-work-page"),
-                {
-                  opacity: 0,
-                  yPercent: 8,
-                },
+              .fromTo(".fwd-work-page", {
+                opacity: 0,
+                yPercent: 8,
+              },
                 {
                   opacity: 1,
                   yPercent: 0,
@@ -225,9 +220,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     var targetNode = document.querySelector(".fwd-collection-grid.w-dyn-items");
 
-    if(targetNode) {
-        observer.observe(targetNode, observerConfig);
+    if (targetNode) {
+      observer.observe(targetNode, observerConfig);
     }
   }
-
-}); //--doc ready
+}
