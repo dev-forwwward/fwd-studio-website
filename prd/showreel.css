@@ -1,0 +1,119 @@
+#section_video {
+    display: flex;
+    /* height: 100%; */
+    max-height: 100svh;
+}
+
+@media screen and (max-width: 1023px) {
+    #section_video {
+        height: auto;
+        min-height: unset;
+        max-height: unset;
+    }
+
+    .showreel_ref {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1023px) {
+    #section_video {
+        padding-top: 96px;
+    }
+}
+
+
+#section_video .fwd-container,
+.padding-section-video {
+    height: 100% !important;
+    flex: 1;
+}
+
+#section_video .fwd-container::before,
+#section_video .fwd-container::after {
+    display: none;
+}
+
+.section_hero_followup_container {
+    /* position: absolute; */
+    /* top: -50svh; */
+    height: 100% !important;
+    /* border: 2px #565656 solid; */
+    transform-origin: 100% 100%;
+}
+
+.hero_video_wrapper {
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    /* opacity: 0; */
+    height: auto;
+    transform-origin: 100% 100%;
+
+    width: 100% !important;
+}
+
+@media screen and (min-width: 1024px) {
+    .hero_video_wrapper {
+        height: 100vh !important;
+        padding-bottom: 86px;
+    }
+}
+
+.hero_video_container {
+    width: 100%;
+    height: auto;
+    transform-origin: 100% 100%;
+}
+
+.hero_video {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    transform-origin: 100% 100%;
+}
+
+/* .hero_video::before { */
+.hero_video_border {
+    /* content: '';
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    inset: -1px;
+    border-radius: 0.8125rem; */
+    border-radius: 2rem;
+    background: linear-gradient(269deg, #2B2B2B 6.23%, #626262 94.26%);
+}
+
+.hero_video img,
+.hero_video video,
+.hero_video_el {
+    border-radius: 2rem;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+}
+
+@media screen and (max-width: 1023px) {
+    .hero_video_border,
+    .hero_video img,
+    .hero_video video,
+    .hero_video_el {
+        border-radius: 1rem;
+    }
+}
+
+.hero_video_border {
+    display: none;
+}
+
+/* .hero_video_el {
+    padding: 1px;
+} */
+
+/*
+* Cursor Follower
+*/
+.home-video-cursor.visible {
+    opacity: 1;
+}
