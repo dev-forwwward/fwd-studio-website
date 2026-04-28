@@ -160,6 +160,30 @@ html.lenis {
     pointer-events: none;
 }
 
+/* UNDERLINE */
+.featured_underline_wrapper {
+    position: relative;
+    overflow: clip;
+    line-height: 1;
+}
+
+.featured_underline_wrapper::before {
+    content: '';
+    height: 6px;
+    width: 0%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: var(--lime);
+    transition: width 0.25s ease;
+    transition-delay: 200ms;
+}
+
+.featured_underline_wrapper.active::before {
+    width: 100%;
+}
+
+
 /* TAB ELEMENT */
 .fs-tabs_dynamic-tab-link.fwd-industries-tab {
     padding: 0;

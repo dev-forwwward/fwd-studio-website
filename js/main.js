@@ -308,4 +308,59 @@ export function mainInit() {
     //         });
     //     }
     // }, 4000);
+
+    const homepageTextRevealSection = document.querySelector(".section_layout484");
+    if (homepageTextRevealSection) {
+        // Function to check if the viewport width is 767px or less
+        function isMobile() {
+            return window.innerWidth <= 767;
+        }
+
+        // Split text into individual words
+        const layoutText = new SplitType(".layout484_text", { types: "words" });
+        const layoutTL = gsap.timeline();
+
+        // Define different start and end values for mobile devices
+        let startValue = isMobile() ? "top 60%" : "top 60%";
+        let endValue = isMobile() ? "bottom 75%" : "bottom 75%";
+
+        layoutTL.from(layoutText.words, {
+            // Initial opacity for each word
+
+            opacity: 0.15,
+            // color: 'var(--neutral--200)',
+            // Stagger animation of each word
+            stagger: 0.2,
+            scrollTrigger: {
+                trigger: ".section_layout484",
+                // markers: true,
+                // Trigger animation when .section_layout484 reaches certain part of the viewport
+                start: startValue,
+                // End animation when .section_layout484 reaches certain part of the viewport
+                end: endValue,
+                // Smooth transition based on scroll position
+                scrub: 3
+            },
+            duration: .5
+        });
+    }
+
+    const featUnderline = document.querySelectorAll('.featured_underline_wrapper');
+    if (featUnderline.length > 0) {
+        featUnderline.forEach(underline => {
+            gsap.from(underline, {
+                scrollTrigger: {
+                    trigger: underline,
+                    start: 'top 60%',
+                    end: 'bottom 20%',
+                    onEnter: () => {
+                        underline.classList.add('active');
+                    },
+                    onLeaveBack: () => {
+                        underline.classList.remove('active');
+                    }
+                },
+            });
+        });
+    }
 }
