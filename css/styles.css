@@ -184,6 +184,18 @@ html.lenis {
 }
 
 
+/* SPLINE EMBED */
+@media only screen and (max-width: 991px) {
+    .spline_embed {
+        display: flex;
+    }
+    .spline_embed canvas {
+        height: auto !important;
+        align-self: center;
+    }
+}
+
+
 /* TAB ELEMENT */
 .fs-tabs_dynamic-tab-link.fwd-industries-tab {
     padding: 0;
