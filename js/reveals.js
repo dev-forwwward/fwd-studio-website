@@ -151,7 +151,6 @@ export function revealsInit() {
                         trigger: h3,
                         start: "bottom bottom",
                         toggleActions: "play none none none",
-                        delay: 1,
                     },
                 })
                 .from(h3.querySelectorAll(".line"), {
@@ -568,7 +567,7 @@ export function revealsInit() {
         // Array of images to reveal - Must exclude images in article rich text (another script will process that)
         let imgContainer = document.querySelectorAll(":not(figure.w-richtext-figure-type-image) > .fwd-image-wrapper");
 
-        if (imgContainer) {
+        if (imgContainer.length > 0) {
             imgContainer.forEach((container) => {
 
                 let image = container.querySelectorAll("img, .fwd-video-container");
@@ -577,7 +576,6 @@ export function revealsInit() {
                         trigger: container,
                         start: "top 70%",
                         toggleActions: "play none play none",
-                        delay: .4,
                         refreshPriority: 1
                     },
                 });
@@ -586,14 +584,14 @@ export function revealsInit() {
 
                 tl.from(container, 1, {
                     xPercent: -100,
-                    ease: Power4.out,
+                    ease: "power3.out",
                 });
 
                 tl.from(image, 1, {
                     xPercent: 100,
                     delay: -1,
                     duration: 0.5,
-                    ease: Power4.out,
+                    ease: "power3.out",
                 });
             });
         }
@@ -624,7 +622,7 @@ export function revealsInit() {
                 {
                     xPercent: 0,
                     opacity: 1,
-                    ease: Power4.out,
+                    ease: "power3.out",
                 },
             );
 
@@ -637,7 +635,7 @@ export function revealsInit() {
                     opacity: 1,
                     duration: 0.8,
                     delay: -1,
-                    ease: Power4.out,
+                    ease: "power3.out",
                 },
             );
 
@@ -646,7 +644,6 @@ export function revealsInit() {
                     delay: 0.2,
                     scrollTrigger: {
                         trigger: workSection,
-                        delay: .25,
                         refreshPriority: 1,
                         onEnter: () => {
                             ScrollTrigger.refresh();
@@ -665,14 +662,14 @@ export function revealsInit() {
                         delay: 1,
                         duration: 1.5,
                         stagger: 0.1,
-                        ease: Power4.out,
+                        ease: "power3.out",
                     },
                     "<",
                 );
         }
 
         // Work Gallery Images Reveal
-        if (workImgWrapper && workSection) {
+        if (workImgWrapper.length > 0 && workSection) {
             let tl = gsap.timeline({
                 delay: 1,
                 /*scrollTrigger: {
@@ -695,7 +692,7 @@ export function revealsInit() {
                 {
                     xPercent: 0,
                     opacity: 1,
-                    ease: Power4.out,
+                    ease: "power3.out",
                 },
             );
 
@@ -708,7 +705,7 @@ export function revealsInit() {
                     opacity: 1,
                     duration: 0.8,
                     delay: -1,
-                    ease: Power4.out,
+                    ease: "power3.out",
                 },
             );
 
@@ -717,7 +714,6 @@ export function revealsInit() {
                     delay: 0.2,
                     scrollTrigger: {
                         trigger: workSection,
-                        delay: .25,
                         refreshPriority: 1,
                         onEnter: () => {
                             ScrollTrigger.refresh();
@@ -739,7 +735,7 @@ export function revealsInit() {
                     y: "0%",
                     duration: 1.5,
                     stagger: 0.1,
-                    ease: Power4.out,
+                    ease: "power3.out",
                   },
                 )*/
                 .fromTo(".fwd-collection-grid-title-wrapper", {
@@ -752,7 +748,7 @@ export function revealsInit() {
                         delay: 1,
                         duration: 1.5,
                         stagger: 0.1,
-                        ease: Power4.out,
+                        ease: "power3.out",
                     },
                     "<",
                 );
@@ -770,14 +766,14 @@ export function revealsInit() {
 
                 tl.from(container, 1, {
                     xPercent: -100,
-                    ease: Power4.out,
+                    ease: "power3.out",
                 });
 
                 tl.from(image, 1, {
                     xPercent: 100,
                     delay: -1,
                     duration: 0.5,
-                    ease: Power4.out,
+                    ease: "power3.out",
                 });
             });
         }
@@ -849,7 +845,7 @@ export function revealsInit() {
 
         const stairsContainer = document.querySelector(".fwd-stairs-container-holder");
 
-        if (stairsContainer.classList.contains("fwd-animate")) {
+        if (stairsContainer && stairsContainer.classList.contains("fwd-animate")) {
 
             let startDelay = 2.5;
 
@@ -920,7 +916,7 @@ export function revealsInit() {
             opacity: 0,
             duration: 1,
             stagger: .25,
-            ease: "power4.out"
+            ease: "power3.out"
         });
 
         const stairsTop = document.querySelector(".fwd-stairs-section-top");

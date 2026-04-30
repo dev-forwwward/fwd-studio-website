@@ -309,6 +309,8 @@ export function mainInit() {
     //     }
     // }, 4000);
 
+
+    // Homepage Text Reveal with scroll
     const homepageTextRevealSection = document.querySelector(".section_layout484");
     if (homepageTextRevealSection) {
         // Function to check if the viewport width is 767px or less
@@ -345,6 +347,8 @@ export function mainInit() {
         });
     }
 
+
+    // Homepage Text Reveal Underline Effect
     const featUnderline = document.querySelectorAll('.featured_underline_wrapper');
     if (featUnderline.length > 0) {
         featUnderline.forEach(underline => {
@@ -361,6 +365,15 @@ export function mainInit() {
                     }
                 },
             });
+        });
+    }
+
+
+    // Homepage Text Bloom Float Effect
+    const bloomELs = document.querySelectorAll('.lg-heading-section .gradient_bloom');
+    if(bloomELs.length > 0) {
+        bloomELs.forEach(bloom => {
+            
         });
     }
 }
