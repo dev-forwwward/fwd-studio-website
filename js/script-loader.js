@@ -12,16 +12,16 @@ import { swiperInit } from './swiper.js';
 import { tabHoverInit } from './tab-hover.js';
 
 mainInit();
-articleReveal();
-formInit();
-formBtnTextInit();
 heroShowreelInit();
-modalScriptInit();
-navigationInit();
 projectListInit();
-revealsInit();
-shareInit();
+navigationInit();
 swiperInit();
 tabHoverInit();
+formInit();
+revealsInit();
+formBtnTextInit();
+shareInit();
+modalScriptInit();
+articleReveal();
 
 console.log("PRD - Loading main scripts loader");
