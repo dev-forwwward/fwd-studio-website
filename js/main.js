@@ -87,7 +87,7 @@ export function mainInit() {
             }, 1100);
 
             setTimeout(() => {
-                loader.remove();
+                // loader.remove();
             }, 5000);
         }
     });
@@ -115,10 +115,11 @@ export function mainInit() {
             bodyEl.classList.remove("overflow-hidden");
 
             loader.style.display = "none";
-            loader.remove();
+            // loader.remove();
 
             // Reveal hero content
             heroContentReveal(0.25);
+            console.log("**** SKIPPING INTRO ANIMATION - SESSION STORAGE DETECTED **** - executing heroCOntentReveal");
         }
     }
 
@@ -138,6 +139,7 @@ export function mainInit() {
         // Hero Content Reveal
 
         if (heroContentContainer) {
+            console.log("RUNNING HERO ANIMATION");
             let tma = gsap
                 .timeline({
                     scrollTrigger: {
@@ -145,12 +147,20 @@ export function mainInit() {
                         start: "bottom bottom",
                         toggleActions: "play none play reverse",
                     },
+                    onComplete: () => {
+                        if (sessionInit === null) {
+                            bodyEl.classList.remove("overflow-hidden");
+                            console.log("* HERO ANIMATION COMPLETE *");
+                        }
+                    }
                 })
                 .to(heroContentContainer, {
                     opacity: 1,
                     delay: seconds,
-                })
-                .from(
+                });
+
+            if (heroContentContainer.querySelector(".word")) {
+                tma.from(
                     heroContentContainer.querySelectorAll(".word"),
                     {
                         opacity: 0,
@@ -158,10 +168,11 @@ export function mainInit() {
                         duration: 0.5,
                         ease: "power3.out",
                         stagger: 0.1,
-                    },
-                    "<",
-                )
-                .from(
+                    }, "<");
+            }
+
+            if (heroContentContainer.querySelector(".fwd-button")) {
+                tma.from(
                     heroContentContainer.querySelector(".fwd-button"),
                     {
                         opacity: 0,
@@ -169,27 +180,18 @@ export function mainInit() {
                         duration: 0.6,
                         ease: "power3.out",
                         delay: 0.5,
-                    },
-                    "<",
-                )
-                .from(
-                    heroContentContainer.querySelector(
-                        ".fwd-webflow-specialists-wrapper",
-                    ),
-                    {
-                        opacity: 0,
-                        duration: 1,
-                        ease: "power3.out",
-                        delay: 0.5,
+                    }, "<");
+            }
 
-                        onComplete: () => {
-                            if (sessionInit === null) {
-                                bodyEl.classList.remove("overflow-hidden");
-                            }
-                        }
-                    },
-                    "<",
-                );
+            if (heroContentContainer.querySelector(".fwd-webflow-specialists-wrapper")) {
+                tma.from(heroContentContainer.querySelector(".fwd-webflow-specialists-wrapper",), {
+                    opacity: 0,
+                    duration: 1,
+                    ease: "power3.out",
+                    delay: 0.5,
+                }, "<");
+            }
+
         }
     }
 
@@ -371,9 +373,9 @@ export function mainInit() {
 
     // Homepage Text Bloom Float Effect
     const bloomELs = document.querySelectorAll('.lg-heading-section .gradient_bloom');
-    if(bloomELs.length > 0) {
+    if (bloomELs.length > 0) {
         bloomELs.forEach(bloom => {
-            
+
         });
     }
 }
