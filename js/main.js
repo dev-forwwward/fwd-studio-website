@@ -378,4 +378,45 @@ export function mainInit() {
 
         });
     }
+
+
+    // GRADIENT BLOOM EFFECT - Seen in Homepage
+    const bloomList = document.querySelectorAll('.gradient_bloom');
+    const bloomLeftList = document.querySelectorAll('.gradient_bloom.left');
+    const bloomCenterList = document.querySelectorAll('.gradient_bloom.center');
+    const bloomRightList = document.querySelectorAll('.gradient_bloom.right');
+
+    if (bloomList.length > 0) {
+        const tl = gsap.timeline({ repeat: -1, defaults: { ease: 'sine.inOut' } });
+
+        if (bloomLeftList.length > 0) {
+            tl
+                .to(bloomLeftList, { x: '50%', y: '-30%', duration: 1.8 }, 0)
+                .to(bloomLeftList, { x: '50%', y: '20%', duration: 1.8 }, 1.8)
+                .to(bloomLeftList, { x: '50%', y: '50%', duration: 1.8 }, 3.6)
+                .to(bloomLeftList, { x: '0%', y: '30%', duration: 1.8 }, 5.4)
+                .to(bloomLeftList, { x: '-40%', y: '-10%', duration: 1.8 }, 7.2)
+                .to(bloomLeftList, { x: '0%', y: '0%', duration: 1.8 }, 9);
+        }
+
+        if (bloomCenterList.length > 0) {
+            tl
+                .to(bloomCenterList, { x: '-50%', y: '-25%', duration: 2.2 }, 0)
+                .to(bloomCenterList, { x: '-20%', y: '40%', duration: 2.2 }, 2.2)
+                .to(bloomCenterList, { x: '50%', y: '50%', duration: 2.2 }, 4.4)
+                .to(bloomCenterList, { x: '50%', y: '15%', duration: 2.2 }, 6.6)
+                .to(bloomCenterList, { x: '30%', y: '-30%', duration: 2.2 }, 8.8)
+                .to(bloomCenterList, { x: '0%', y: '0%', duration: 2.2 }, 11);
+        }
+
+        if (bloomRightList.length > 0) {
+            tl
+                .to(bloomRightList, { x: '-60%', y: '30%', duration: 2.6 }, 0)
+                .to(bloomRightList, { x: '-30%', y: '50%', duration: 2.6 }, 2.6)
+                .to(bloomRightList, { x: '40%', y: '50%', duration: 2.6 }, 5.2)
+                .to(bloomRightList, { x: '50%', y: '-15%', duration: 2.6 }, 7.8)
+                .to(bloomRightList, { x: '20%', y: '-45%', duration: 2.6 }, 10.4)
+                .to(bloomLeftList, { x: '0%', y: '0%', duration: 2.6 }, 13);
+        }
+    }
 }
