@@ -3,19 +3,19 @@
 export function revealsInit() {
 
     // Split text into words and characters
-    const heading1Split = new SplitType(".fwd-h1", { types: "words, lines" });
-    const heading2Split = new SplitType(".fwd-h2", { types: "words, lines" });
+    const heading1Split = new SplitType(".fwd-h1, .heading-style-h1_custom", { types: "words, lines" });
+    const heading2Split = new SplitType(".fwd-h2, .heading-style-h2_custom", { types: "words, lines" });
     const h2Split = new SplitType(".h2", { types: "words" });
-    const heading3Split = new SplitType(".fwd-h3", { types: "lines" });
-    const heading4Split = new SplitType(".fwd-h4", { types: "lines" });
-    const heading5Split = new SplitType(".fwd-h5", { types: "lines" });
-    const subtitleSplit = new SplitType(".fwd-overline", { types: "lines" });
+    const heading3Split = new SplitType(".fwd-h3, .heading-style-h3_custom", { types: "lines" });
+    const heading4Split = new SplitType(".fwd-h4, .heading-style-h4_custom", { types: "lines" });
+    const heading5Split = new SplitType(".fwd-h5, .heading-style-h5_custom", { types: "lines" });
+    const subtitleSplit = new SplitType(".fwd-overline, .fwd-overline-v2", { types: "lines" });
 
     // Store different types of text in lists
-    let heading1 = document.querySelectorAll(".fwd-h1:not(.fwd-hero-header)");
-    let heading2 = document.querySelectorAll(".fwd-h2");
-    let heading3 = document.querySelectorAll(".fwd-h3");
-    let heading4 = document.querySelectorAll(".fwd-h4");
+    let heading1 = document.querySelectorAll(".fwd-h1:not(.fwd-hero-header), .heading-style-h1_custom");
+    let heading2 = document.querySelectorAll(".fwd-h2, .heading-style-h2_custom");
+    let heading3 = document.querySelectorAll(".fwd-h3, .heading-style-h3_custom");
+    let heading4 = document.querySelectorAll(".fwd-h4, .heading-style-h4_custom");
     let heading5 = document.querySelectorAll(":not(.fwd-collection-grid-wrapper) h5");
 
     let subtitles = document.querySelectorAll(".fwd-overline");
