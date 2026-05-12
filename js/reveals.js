@@ -668,6 +668,31 @@ export function revealsInit() {
                 );
         }
 
+        // HP - Section People-First AI
+        const sectionPpl1stai = document.querySelector(".section-ppl-1st-ai");
+        const sectionLayout484 = document.querySelector(".section_layout484");
+        if (sectionPpl1stai) {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: sectionLayout484,
+                    start: "50% top",
+                    end: "200% top",
+                    scrub: true,
+                    markers: true
+                }
+            }
+            ).from(".hand-left", {
+                yPercent: 20
+            }).from(".hand-right", {
+                yPercent: 25
+            }, "<")
+            .from(".bg_radial", {
+                yPercent: 20
+            }, "<");
+        }
+
+
+
         // Work Gallery Images Reveal
         if (workImgWrapper.length > 0 && workSection) {
             let tl = gsap.timeline({
