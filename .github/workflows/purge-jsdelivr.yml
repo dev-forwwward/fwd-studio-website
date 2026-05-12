@@ -1,0 +1,52 @@
+name: Purge jsDelivr Cache
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "js/**"
+      - "css/**"
+      - "*.html"
+
+jobs:
+  purge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Get changed files
+        id: changed
+        run: |
+          files=$(git diff --name-only HEAD~1 HEAD -- 'js/**' 'css/**' '*.html')
+          echo "files<<EOF" >> $GITHUB_OUTPUT
+          echo "$files" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Purge jsDelivr cache
+        if: steps.changed.outputs.files != ''
+        env:
+          CHANGED_FILES: ${{ steps.changed.outputs.files }}
+        run: |
+          REPO="dev-forwwward/fwd-studio-website"
+          BRANCH="main"
+
+          paths=()
+          while IFS= read -r file; do
+            [[ -z "$file" ]] && continue
+            paths+=("\"/gh/${REPO}@${BRANCH}/${file}\"")
+          done <<< "$CHANGED_FILES"
+
+          if [ ${#paths[@]} -eq 0 ]; then
+            echo "No purgeable files found."
+            exit 0
+          fi
+
+          payload="{\"path\":[$(IFS=,; echo "${paths[*]}")]}"
+          echo "Purging: $payload"
+
+          curl -s -X POST "https://purge.jsdelivr.net/" \
+            -H "Content-Type: application/json" \
+            -d "$payload"
