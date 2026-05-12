@@ -678,7 +678,7 @@ export function revealsInit() {
                     start: "50% top",
                     end: "200% top",
                     scrub: true,
-                    markers: true
+                    //markers: true
                 }
             }
             ).from(".hand-left", {
