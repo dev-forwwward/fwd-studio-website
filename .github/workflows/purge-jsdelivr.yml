@@ -8,6 +8,12 @@ on:
       - "js/**"
       - "css/**"
       - "*.html"
+  workflow_dispatch:
+    inputs:
+      purge_all:
+        description: "Purge all JS/CSS/HTML files (full cache reset)"
+        required: false
+        default: "true"
 
 jobs:
   purge:
@@ -17,10 +23,14 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Get changed files
+      - name: Get files to purge
         id: changed
         run: |
-          files=$(git diff --name-only HEAD~1 HEAD -- 'js/**' 'css/**' '*.html')
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            files=$(find js css -type f \( -name "*.js" -o -name "*.css" \) && find . -maxdepth 1 -name "*.html" | sed 's|^\./||')
+          else
+            files=$(git diff --name-only HEAD~1 HEAD -- 'js/**' 'css/**' '*.html')
+          fi
           echo "files<<EOF" >> $GITHUB_OUTPUT
           echo "$files" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -33,20 +43,10 @@ jobs:
           REPO="dev-forwwward/fwd-studio-website"
           BRANCH="main"
 
-          paths=()
           while IFS= read -r file; do
             [[ -z "$file" ]] && continue
-            paths+=("\"/gh/${REPO}@${BRANCH}/${file}\"")
+            url="https://purge.jsdelivr.net/gh/${REPO}@${BRANCH}/${file}"
+            echo -n "Purging ${file} ... "
+            curl -s "$url"
+            echo ""
           done <<< "$CHANGED_FILES"
-
-          if [ ${#paths[@]} -eq 0 ]; then
-            echo "No purgeable files found."
-            exit 0
-          fi
-
-          payload="{\"path\":[$(IFS=,; echo "${paths[*]}")]}"
-          echo "Purging: $payload"
-
-          curl -s -X POST "https://purge.jsdelivr.net/" \
-            -H "Content-Type: application/json" \
-            -d "$payload"
