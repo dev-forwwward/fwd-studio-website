@@ -2,6 +2,20 @@ export function mainInit() {
 
     const bodyEl = document.querySelector("body");
 
+    const cookieYesContent = document.querySelector(".cky-preference-body-wrapper");
+    if (cookieYesContent) {
+        cookieYesContent.setAttribute("data-lenis-prevent", "true");
+    } else {
+        const cookieObserver = new MutationObserver(() => {
+            const el = document.querySelector(".cky-preference-body-wrapper");
+            if (el) {
+                el.setAttribute("data-lenis-prevent", "true");
+                cookieObserver.disconnect();
+            }
+        });
+        cookieObserver.observe(document.body, { childList: true, subtree: true });
+    }
+
     //Smopothscroller
     gsap.registerPlugin(ScrollTrigger);
     gsap.config({
