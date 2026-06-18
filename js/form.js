@@ -20,7 +20,7 @@ export function formInit() {
                 },
                 messages: {
                     youremail:
-                        "Please specify a valid email address using the format user@example.com"
+                        "Please use a valid email address (e.g., user@mail.com)"
                 },
                 errorPlacement: function (error, element) {
                     error.insertAfter(element); // Ensures errors appear below the correct field
