@@ -823,3 +823,16 @@ body.contact-modal-open .modal-container  {
 .fwd-landing-hero-thank-you {
     background: radial-gradient(137.88% 154.75% at 50% 128.9%, #8CA3AF 0%, #FFF 100%);
 }
+
+
+/*
+*   SERVICES Page
+*/
+.services-list-item-fixed-content-container {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.services-list-item-fixed-content-container.active {
+    opacity: 1;
+}

@@ -10,6 +10,7 @@ import { revealsInit } from './reveals.js';
 import { shareInit } from './share.js';
 import { swiperInit } from './swiper.js';
 import { tabHoverInit } from './tab-hover.js';
+import { servicesInit } from './services.js';
 
 mainInit();
 heroShowreelInit();
@@ -23,5 +24,6 @@ formBtnTextInit();
 shareInit();
 modalScriptInit();
 articleReveal();
+servicesInit();
 
 console.log("PRD - Loading main scripts loader");
