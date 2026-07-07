@@ -7,15 +7,17 @@ export function servicesInit() {
 
         servicesListItems.forEach((item, i) => {
 
+            const titleEl = item.querySelector("h2");
+            const titleSplit = new SplitType(titleEl, { types: "chars" });
             const textBlock = fixedContentList[i].querySelector(".services-list-item-fixed-content_text_block");
 
             gsap.timeline({
                 scrollTrigger: {
                     trigger: item,
-                    start: "top 70%",
+                    start: "top bottom",
                     end: "bottom top",
                     scrub: true,
-                    // markers: true,
+                    markers: true,
                     onEnter: () => {
                         const prevActive = servicesList.querySelector('.active');
                         if (prevActive && i != 0) {
@@ -39,10 +41,18 @@ export function servicesInit() {
                         }
                     }
                 }
-            }).from(textBlock, {
+            }).from(titleSplit.chars, {
+                stagger: .02,
                 opacity: 0,
-                duration: .25,
-            }).from({}, {
+                filter: "blur(12px)",
+                duration: .6
+            })
+            .from(textBlock, {
+                delay: .45,
+                opacity: 0,
+                duration: .4,
+            }, "<")
+            .from({}, {
                 duration: .65
             }).to(textBlock, {
                 opacity: 0,
