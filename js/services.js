@@ -8,6 +8,7 @@ export function servicesInit() {
         servicesListItems.forEach((item, i) => {
 
             const titleEl = item.querySelector("h2");
+            const numberEl = item.querySelector(".number-container");
             const titleSplit = new SplitType(titleEl, { types: "chars" });
             const textBlock = fixedContentList[i].querySelector(".services-list-item-fixed-content_text_block");
 
@@ -17,7 +18,7 @@ export function servicesInit() {
                     start: "top bottom",
                     end: "bottom top",
                     scrub: true,
-                    markers: true,
+                    // markers: true,
                     onEnter: () => {
                         const prevActive = servicesList.querySelector('.active');
                         if (prevActive && i != 0) {
@@ -41,14 +42,21 @@ export function servicesInit() {
                         }
                     }
                 }
-            }).from(titleSplit.chars, {
-                stagger: .02,
+            })
+            .from(numberEl, {
+                delay: .2,
                 opacity: 0,
                 filter: "blur(12px)",
-                duration: .6
+                duration: .25
             })
+            .from(titleSplit.chars, {
+                stagger: .015,
+                opacity: 0,
+                filter: "blur(12px)",
+                duration: .32
+            }, "<")
             .from(textBlock, {
-                delay: .45,
+                delay: .2,
                 opacity: 0,
                 duration: .4,
             }, "<")
