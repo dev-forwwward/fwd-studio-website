@@ -105,24 +105,24 @@ export function servicesInit() {
                     }
                 })
                     .from(numberEl, {
-                        delay: .2,
+                        delay: .05,
                         opacity: 0,
                         filter: "blur(12px)",
                         duration: .25
                     })
                     .from(titleSplit.chars, {
-                        stagger: .015,
+                        stagger: .012,
                         opacity: 0,
                         filter: "blur(12px)",
                         duration: .32
                     }, "<")
                     .from(textBlock, {
-                        delay: .2,
+                        delay: .32,
                         opacity: 0,
-                        duration: .4,
+                        duration: .2,
                     }, "<")
                     .from({}, {
-                        duration: .65
+                        duration: .8
                     }).to(textBlock, {
                         opacity: 0,
                         duration: .1,
