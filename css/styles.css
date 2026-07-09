@@ -836,3 +836,13 @@ body.contact-modal-open .modal-container  {
 .services-list-item-fixed-content-container.active {
     opacity: 1;
 }
+
+@media screen and (max-width: 991px) {
+    .services-list-item .services-list-item-text-container {
+        opacity: 0;
+    }
+
+    .services-list-item.active .services-list-item-text-container {
+        opacity: 1;
+    }
+}

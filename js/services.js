@@ -66,75 +66,163 @@ export function servicesInit() {
             const servicesListItems = document.querySelectorAll(".services-list-item-text-container");
             const fixedContentList = document.querySelectorAll(".services-list-item-fixed-content-container");
 
-            servicesListItems.forEach((item, i) => {
 
-                const titleEl = item.querySelector("h2");
-                const numberEl = item.querySelector(".number-container");
-                const titleSplit = new SplitType(titleEl, { types: "lines, chars" });
-                const textBlock = fixedContentList[i].querySelector(".services-list-item-fixed-content_text_block");
+            // desktop
+            if (window.innerWidth > 991) {
+                servicesListItems.forEach((item, i) => {
 
-                let tl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: item,
-                        start: "top bottom",
-                        end: "bottom top",
-                        scrub: true,
-                        // markers: true,
-                        onEnter: () => {
-                            const prevActive = servicesList.querySelector('.active');
-                            if (prevActive && i != 0) {
-                                prevActive.classList.remove("active");
-                            }
-                            fixedContentList[i].classList.add("active");
-                        },
-                        onLeave: () => {
-                            if (i != 2) {
-                                fixedContentList[i].classList.remove("active");
-                            }
-                        },
-                        onEnterBack: () => {
-                            const prevActive = servicesList.querySelector('.active');
-                            if (prevActive) {
-                                prevActive.classList.remove("active");
-                            }
-                            fixedContentList[i].classList.add("active");
-                        },
-                        onLeaveBack: () => {
-                            if (i != 0) {
-                                fixedContentList[i].classList.remove("active");
+                    const titleEl = item.querySelector("h2");
+                    const numberEl = item.querySelector(".number-container");
+                    const titleSplit = new SplitType(titleEl, { types: "lines, chars" });
+                    const textBlock = fixedContentList[i].querySelector(".services-list-item-fixed-content_text_block");
+
+                    let tl = gsap.timeline({
+                        scrollTrigger: {
+                            trigger: item,
+                            start: "top bottom",
+                            end: "bottom top",
+                            scrub: true,
+                            // markers: true,
+                            onEnter: () => {
+                                const prevActive = servicesList.querySelector('.active');
+                                if (prevActive && i != 0) {
+                                    prevActive.classList.remove("active");
+                                }
+                                fixedContentList[i].classList.add("active");
+                            },
+                            onLeave: () => {
+                                if (i != 2) {
+                                    fixedContentList[i].classList.remove("active");
+                                }
+                            },
+                            onEnterBack: () => {
+                                const prevActive = servicesList.querySelector('.active');
+                                if (prevActive) {
+                                    prevActive.classList.remove("active");
+                                }
+                                fixedContentList[i].classList.add("active");
+                            },
+                            onLeaveBack: () => {
+                                if (i != 0) {
+                                    fixedContentList[i].classList.remove("active");
+                                }
                             }
                         }
-                    }
-                })
-                    .from(numberEl, {
-                        delay: .05,
-                        opacity: 0,
-                        filter: "blur(12px)",
-                        duration: .25
                     })
-                    .from(titleSplit.chars, {
-                        stagger: .012,
-                        opacity: 0,
-                        filter: "blur(12px)",
-                        duration: .32
-                    }, "<")
-                    .from(textBlock, {
-                        delay: .32,
-                        opacity: 0,
-                        duration: .2,
-                    }, "<")
-                    .from({}, {
-                        duration: .8
-                    });
+                        .from(numberEl, {
+                            delay: .05,
+                            opacity: 0,
+                            filter: "blur(12px)",
+                            duration: .25
+                        })
+                        .from(titleSplit.chars, {
+                            stagger: .012,
+                            opacity: 0,
+                            filter: "blur(12px)",
+                            duration: .32
+                        }, "<")
+                        .from(textBlock, {
+                            delay: .32,
+                            opacity: 0,
+                            duration: .2,
+                        }, "<")
+                        .from({}, {
+                            duration: .8
+                        });
 
-                // fade-out all text blocks on leave except for last one
-                if (i < 2) {
-                    tl.to(textBlock, {
-                        opacity: 0,
-                        duration: .1,
-                    }, "-=.2");
-                }
-            });
+                    // fade-out all text blocks on leave except for last one
+                    if (i < 2) {
+                        tl.to(textBlock, {
+                            opacity: 0,
+                            duration: .1,
+                        }, "-=.2");
+                    }
+                }); // desktop interaction
+            } else {
+                // tablet & mobile
+
+                const servicesSlideList = document.querySelectorAll('.services-list-item');
+                servicesSlideList.forEach((item, i) => {
+
+                    const titleEl = item.querySelector("h2");
+                    const numberEl = item.querySelector(".number-container");
+                    const titleSplit = new SplitType(titleEl, { types: "lines, chars" });
+                    const textBlock = fixedContentList[i].querySelector(".services-list-item-fixed-content_text_block");
+
+                    const lastBlock = document.querySelector(".services-list-item-text-container.last");
+
+                    let tl = gsap.timeline({
+                        scrollTrigger: {
+                            trigger: item,
+                            start: "top top",
+                            end: "bottom top",
+                            scrub: 2,
+                            // markers: true,
+                            onEnter: () => {
+                                const prevActive = servicesList.querySelector('.active');
+                                const prevActiveSlide = document.querySelector('.services-list-item.active');
+                                if (prevActive && i != 0) {
+                                    prevActive.classList.remove("active");
+                                }
+
+                                fixedContentList[i].classList.add("active");
+                                servicesSlideList[i].classList.add("active");
+                            },
+                            onLeave: () => {
+                                if (i != 2) {
+                                    fixedContentList[i].classList.remove("active");
+                                }
+                                if (i == 2) {
+                                    gsap.set(lastBlock, {
+                                        position: 'relative'
+                                    });
+                                }
+                                servicesSlideList[i].classList.remove("active");
+                            },
+                            onEnterBack: () => {
+                                const prevActive = servicesList.querySelector('.active');
+                                if (prevActive) {
+                                    prevActive.classList.remove("active");
+                                    servicesSlideList[i].classList.remove("active");
+                                }
+
+                                fixedContentList[i].classList.add("active");
+                                servicesSlideList[i].classList.add("active");
+                            },
+                            onLeaveBack: () => {
+                                if (i != 0) {
+                                    fixedContentList[i].classList.remove("active");
+                                }
+                                servicesSlideList[i].classList.remove("active");
+                            }
+                        }
+                    })
+                        .from(numberEl, {
+                            delay: .05,
+                            opacity: 0,
+                            filter: "blur(12px)",
+                            duration: .25
+                        })
+                        .from(titleSplit.chars, {
+                            stagger: .012,
+                            opacity: 0,
+                            filter: "blur(12px)",
+                            duration: .32
+                        }, "<")
+                        .from(textBlock, {
+                            delay: .32,
+                            opacity: 0,
+                            duration: .2,
+                        }, "<")
+                        .from({}, {
+                            duration: .5
+                        })
+                        .to(textBlock, {
+                            opacity: 0,
+                            duration: .4,
+                        }, "-=.2");
+                });
+            }
         }
     }); // fonts loader
 }
