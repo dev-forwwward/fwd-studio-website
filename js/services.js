@@ -73,7 +73,7 @@ export function servicesInit() {
                 const titleSplit = new SplitType(titleEl, { types: "lines, chars" });
                 const textBlock = fixedContentList[i].querySelector(".services-list-item-fixed-content_text_block");
 
-                gsap.timeline({
+                let tl = gsap.timeline({
                     scrollTrigger: {
                         trigger: item,
                         start: "top bottom",
@@ -125,10 +125,15 @@ export function servicesInit() {
                     }, "<")
                     .from({}, {
                         duration: .8
-                    }).to(textBlock, {
+                    });
+
+                // fade-out all text blocks on leave except for last one
+                if (i < 2) {
+                    tl.to(textBlock, {
                         opacity: 0,
                         duration: .1,
-                    });
+                    }, "-=.2");
+                }
             });
         }
     }); // fonts loader
