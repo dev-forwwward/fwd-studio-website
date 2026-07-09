@@ -88,7 +88,9 @@ export function servicesInit() {
                             fixedContentList[i].classList.add("active");
                         },
                         onLeave: () => {
-                            fixedContentList[i].classList.remove("active");
+                            if (i != 2) {
+                                fixedContentList[i].classList.remove("active");
+                            }
                         },
                         onEnterBack: () => {
                             const prevActive = servicesList.querySelector('.active');
