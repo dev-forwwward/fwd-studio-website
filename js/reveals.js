@@ -1080,5 +1080,4 @@ export function revealsInit() {
         }
 
     }); // fonts loader
-    ScrollTrigger.refresh();
 }
