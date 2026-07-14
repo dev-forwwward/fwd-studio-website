@@ -141,64 +141,26 @@ export function servicesInit() {
             } else {
                 // tablet & mobile
 
-                const servicesSlideList = document.querySelectorAll('.services-list-item');
-                servicesSlideList.forEach((item, i) => {
+                const servicesSlideTextList = document.querySelectorAll('.services-list-item-fixed-content_text_block');
+                servicesSlideTextList.forEach((item, i) => {
 
                     const titleEl = item.querySelector("h2");
                     const numberEl = item.querySelector(".number-container");
                     const titleSplit = new SplitType(titleEl, { types: "lines, chars" });
-                    const textBlock = fixedContentList[i].querySelector(".services-list-item-fixed-content_text_block");
+                    const textBlock = item.querySelector("p");
 
                     const lastBlock = document.querySelector(".services-list-item-text-container.last");
 
                     let tl = gsap.timeline({
                         scrollTrigger: {
                             trigger: item,
-                            start: "top top",
+                            start: "top 98%",
                             end: "bottom top",
-                            scrub: 2,
+                            scrub: 1,
                             // markers: true,
-                            onEnter: () => {
-                                const prevActive = servicesList.querySelector('.active');
-                                const prevActiveSlide = document.querySelector('.services-list-item.active');
-                                if (prevActive && i != 0) {
-                                    prevActive.classList.remove("active");
-                                }
-
-                                fixedContentList[i].classList.add("active");
-                                servicesSlideList[i].classList.add("active");
-                            },
-                            onLeave: () => {
-                                if (i != 2) {
-                                    fixedContentList[i].classList.remove("active");
-                                }
-                                if (i == 2) {
-                                    gsap.set(lastBlock, {
-                                        position: 'relative'
-                                    });
-                                }
-                                servicesSlideList[i].classList.remove("active");
-                            },
-                            onEnterBack: () => {
-                                const prevActive = servicesList.querySelector('.active');
-                                if (prevActive) {
-                                    prevActive.classList.remove("active");
-                                    servicesSlideList[i].classList.remove("active");
-                                }
-
-                                fixedContentList[i].classList.add("active");
-                                servicesSlideList[i].classList.add("active");
-                            },
-                            onLeaveBack: () => {
-                                if (i != 0) {
-                                    fixedContentList[i].classList.remove("active");
-                                }
-                                servicesSlideList[i].classList.remove("active");
-                            }
                         }
                     })
                         .from(numberEl, {
-                            delay: .05,
                             opacity: 0,
                             filter: "blur(12px)",
                             duration: .25

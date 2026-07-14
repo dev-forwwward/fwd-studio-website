@@ -828,21 +828,13 @@ body.contact-modal-open .modal-container  {
 /*
 *   SERVICES Page
 */
-.services-list-item-fixed-content-container {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-.services-list-item-fixed-content-container.active {
-    opacity: 1;
-}
-
-@media screen and (max-width: 991px) {
-    .services-list-item .services-list-item-text-container {
+@media screen and (min-width: 992px) {
+    .services-list-item-fixed-content-container {
         opacity: 0;
+        transition: opacity 0.5s ease;
     }
 
-    .services-list-item.active .services-list-item-text-container {
+    .services-list-item-fixed-content-container.active {
         opacity: 1;
     }
 }
