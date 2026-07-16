@@ -293,6 +293,7 @@ export function mainInit() {
         span.innerHTML = new Date().getFullYear();
     });
 
+    
     // Remove preloader
     if (document.querySelector(".hide-page")) {
         window.setTimeout(function () {
@@ -310,6 +311,29 @@ export function mainInit() {
                 window.scroll(0, 0);
             }
         }, 150);
+    }
+
+
+    // PRELOADER
+    const preloaderEL = document.querySelector(".preloader");
+
+    // reset scroll position on load, after allowing page overflow
+    // but *only* if URL has no anchor mention
+    if (!goingToAnchor) {
+        lenis.scrollTo(0, 0);
+    }
+
+    if (preloaderEL) {
+        bodyEl.classList.add("overflow-hidden");
+        gsap.to('.preloader', {
+            opacity: 0,
+            delay: .3,
+            duration: .5,
+            ease: "power2.out",
+            onComplete: () => {
+                bodyEl.classList.remove("overflow-hidden");
+            }
+        });
     }
 
 
