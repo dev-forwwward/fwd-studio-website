@@ -82,7 +82,7 @@ export function servicesInit() {
                             start: "top bottom",
                             end: "bottom top",
                             scrub: true,
-                            markers: true,
+                            // markers: true,
                             onEnter: () => {
                                 const prevActive = servicesList.querySelector('.active');
                                 if (prevActive && i != 0) {
