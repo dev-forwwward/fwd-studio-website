@@ -1,5 +1,4 @@
 export function modalScriptInit() {
-    const hasModalButton = document.querySelector(".has-modal-button");
     const modalBtns = document.querySelectorAll(".fwd-button-modal");
 
     if (modalBtns.length > 0) {
