@@ -63,7 +63,7 @@ export function servicesInit() {
         // Services page - listing
         const servicesList = document.querySelector(".services-list-item-fixed-content-container");
         if (servicesList) {
-            const servicesListItems = document.querySelectorAll(".services-list-item-text-container");
+            const servicesListItems = document.querySelectorAll(".services-list-item-container .services-list-item-text-container");
             const fixedContentList = document.querySelectorAll(".services-list-item-fixed-content-container");
 
 
@@ -82,7 +82,7 @@ export function servicesInit() {
                             start: "top bottom",
                             end: "bottom top",
                             scrub: true,
-                            // markers: true,
+                            markers: true,
                             onEnter: () => {
                                 const prevActive = servicesList.querySelector('.active');
                                 if (prevActive && i != 0) {
