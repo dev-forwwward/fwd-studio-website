@@ -22,14 +22,14 @@ export function projectListInit() {
     cases = document.querySelectorAll(".fwd-collection-grid-item");
     casesArray = Array.prototype.slice.call(cases);
 
-    // Hide every Project that's not the first x number of rows (x = initialReveal)
-    cases.forEach((el) => {
-      if (i >= initialReveal) {
-        el.classList.add("fwd-visibility-hidden");
-      } else {
-        i++;
-      }
-    });
+    // // Hide every Project that's not the first x number of rows (x = initialReveal)
+    // cases.forEach((el) => {
+    //   if (i >= initialReveal) {
+    //     el.classList.add("fwd-visibility-hidden");
+    //   } else {
+    //     i++;
+    //   }
+    // });
   }
 
   const loadMoreBtn = document.querySelector(".fwd-load-more");
@@ -91,14 +91,14 @@ export function projectListInit() {
   }
 
   function loadMoreContent() {
-    // iterate through the following next x amount (x = revealJump) cases
-    // and reveal them if they exist
-    for (let j = 0; j < revealJump; j++) {
-      if (casesArray[i]) {
-        casesArray[i].classList.remove("fwd-visibility-hidden");
-        i++;
-      }
-    }
+    // // iterate through the following next x amount (x = revealJump) cases
+    // // and reveal them if they exist
+    // for (let j = 0; j < revealJump; j++) {
+    //   if (casesArray[i]) {
+    //     casesArray[i].classList.remove("fwd-visibility-hidden");
+    //     i++;
+    //   }
+    // }
 
     // if all cases revealed, revert
     if (i > casesArray.length - 1) {
