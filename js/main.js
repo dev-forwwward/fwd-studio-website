@@ -1,6 +1,7 @@
 export function mainInit() {
 
     const bodyEl = document.querySelector("body");
+    const preloaderEL = document.querySelector(".preloader");
 
     const cookieYesContent = document.querySelector(".cky-preference-body-wrapper");
     if (cookieYesContent) {
@@ -164,7 +165,6 @@ export function mainInit() {
                     onComplete: () => {
                         if (sessionInit === null) {
                             bodyEl.classList.remove("overflow-hidden");
-                            console.log("* HERO ANIMATION COMPLETE *");
                         }
                     }
                 })
@@ -293,7 +293,7 @@ export function mainInit() {
         span.innerHTML = new Date().getFullYear();
     });
 
-    
+
     // Remove preloader
     if (document.querySelector(".hide-page")) {
         window.setTimeout(function () {
@@ -315,8 +315,6 @@ export function mainInit() {
 
 
     // PRELOADER
-    const preloaderEL = document.querySelector(".preloader");
-
     // reset scroll position on load, after allowing page overflow
     // but *only* if URL has no anchor mention
     if (!goingToAnchor) {
