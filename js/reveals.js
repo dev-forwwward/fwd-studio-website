@@ -279,7 +279,7 @@ export function revealsInit() {
         // Simple Fade-in - Reveal (same as text reveal above, does not include el children)
         if (fadeInElements) {
             fadeInElements.forEach((fadeInEl) => {
-                gsap
+                let fadeInTimeline = gsap
                     .timeline({
                         scrollTrigger: {
                             trigger: fadeInEl,
@@ -287,7 +287,17 @@ export function revealsInit() {
                             toggleActions: "play none play none",
                         },
                     })
-                    .from(fadeInEl, {
+
+                if (fadeInEl.classList.contains("no-y-up")) {
+                    fadeInTimeline.from(fadeInEl, {
+                        opacity: 0,
+                        duration: 1.2,
+                        ease: "power3.out",
+                        stagger: 0.25,
+                        delay: 0.25,
+                    });
+                } else {
+                    fadeInTimeline.from(fadeInEl, {
                         opacity: 0,
                         y: "100%",
                         duration: 1,
@@ -295,6 +305,7 @@ export function revealsInit() {
                         stagger: 0.25,
                         delay: 0.25,
                     });
+                }
             });
         }
 
