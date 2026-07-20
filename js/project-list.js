@@ -156,7 +156,7 @@ export function projectListInit() {
               {
                 xPercent: 0,
                 opacity: 1,
-                ease: Power4.out,
+                ease: power4.out,
               },
             );
 
@@ -169,7 +169,7 @@ export function projectListInit() {
                 opacity: 1,
                 duration: 0.8,
                 delay: -1,
-                ease: Power4.out,
+                ease: power4.out,
               },
             );
 
@@ -190,7 +190,7 @@ export function projectListInit() {
                   y: "0%",
                   duration: 1.2,
                   stagger: 0.05,
-                  ease: Power4.out,
+                  ease: power4.out,
                 },
               )
               .fromTo(".fwd-work-page", {
@@ -203,7 +203,7 @@ export function projectListInit() {
                   delay: 0.5,
                   duration: 1.2,
                   stagger: 0.1,
-                  ease: Power4.out,
+                  ease: power4.out,
                 },
                 "<",
               );
