@@ -148,6 +148,7 @@ export function servicesInit() {
                     const numberEl = item.querySelector(".number-container");
                     const titleSplit = new SplitType(titleEl, { types: "lines, chars" });
                     const textBlock = item.querySelector("p");
+                    const itemButton = item.querySelector(".fwd-button");
 
                     const lastBlock = document.querySelector(".services-list-item-text-container.last");
 
@@ -173,6 +174,11 @@ export function servicesInit() {
                         }, "<")
                         .from(textBlock, {
                             delay: .32,
+                            opacity: 0,
+                            duration: .2,
+                        }, "<")
+                        .from(itemButton, {
+                            delay: .2,
                             opacity: 0,
                             duration: .2,
                         }, "<")
