@@ -685,7 +685,7 @@ Article quotes
     .fwd-deliverables-wrapper .fwd-deliverables-checkmark-container {
         width: 48%;
         align-self: flex-start;
-        padding: 10px 0;
+        padding: 10px;
     }
 
     .fwd-deliverables-wrapper .fwd-deliverables-checkmark-container:nth-child(2) {
