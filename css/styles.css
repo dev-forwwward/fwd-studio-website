@@ -544,12 +544,20 @@ h2 {
     line-height: initial;
 }
 
+.fwd-hero-message-gradient-wrapper .word,
 .fwd-hero-message-gradient .word,
 .fwd-heading-gradient .word {
     background-image: linear-gradient(to bottom,
             var(--neutral--400),
             var(--neutral--700));
     -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.fwd-hero-message-gradient-wrapper-2 .word {
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(#2B2B2B 6.23%, #626262 94.26%);
     -webkit-background-clip: text;
     background-clip: text;
 }
