@@ -455,4 +455,78 @@ export function mainInit() {
                 .to(bloomLeftList, { x: '0%', y: '0%', duration: 2.6 }, 13);
         }
     }
+
+
+    // ABOUT PAGE - Card Effect
+    const root = document.querySelector('.mwg003');
+    const pinHeight = root.querySelector('.mwg003-pin-height');
+    const circles = root.querySelectorAll('.mwg003-circle');
+    if(root) {
+
+        // // wait for GSAP to be loaded
+        // (function waitForGSAP() {
+        //     if (window.gsap && window.ScrollTrigger) {
+        //         initEffect();
+        //     } else {
+        //         setTimeout(waitForGSAP, 50);
+        //     }
+        // })();
+
+        setTimeout(initEffect, 500);
+
+        function initEffect() {
+            // scope our effect to its parent section
+
+            gsap.fromTo(
+                root.querySelector('.mwg003-circles'),
+                {
+                    y: '5%',
+                },
+                {
+                    y: '-5%',
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: pinHeight,
+                        start: 'top top',
+                        end: 'bottom bottom',
+                        pin: root.querySelector('.mwg003-container'),
+                        // pinSpacing: false,
+                        scrub: true,
+                    },
+                },
+            );
+
+            let angle = 3,
+                halfRange = ((circles.length - 1) * angle) / 2,
+                rot = -halfRange;
+
+            const distPerCard = (pinHeight.clientHeight - window.innerHeight) / circles.length;
+
+            circles.forEach((circle, index) => {
+                gsap.to(circle, {
+                    rotation: rot,
+                    ease: 'power1.out',
+                    scrollTrigger: {
+                        trigger: pinHeight,
+                        start: 'top top-=' + distPerCard * index,
+                        end: '+=' + distPerCard,
+                        scrub: true,
+                    },
+                });
+                gsap.to(circle.querySelector('.mwg003-card'), {
+                    rotation: rot,
+                    y: '-50%',
+                    ease: 'power1.out',
+                    scrollTrigger: {
+                        trigger: pinHeight,
+                        start: 'top top-=' + distPerCard * index,
+                        end: '+=' + distPerCard,
+                        scrub: true,
+                    },
+                });
+
+                rot += angle;
+            });
+        }
+    }
 }
