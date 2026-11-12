@@ -459,9 +459,10 @@ export function mainInit() {
 
     // ABOUT PAGE - Card Effect
     const root = document.querySelector('.mwg003');
-    const pinHeight = root.querySelector('.mwg003-pin-height');
-    const circles = root.querySelectorAll('.mwg003-circle');
-    if(root) {
+    if (root) {
+
+        const pinHeight = root.querySelector('.mwg003-pin-height');
+        const circles = root.querySelectorAll('.mwg003-circle');
 
         // // wait for GSAP to be loaded
         // (function waitForGSAP() {
