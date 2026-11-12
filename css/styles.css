@@ -834,6 +834,16 @@ body.contact-modal-open .modal-container  {
 
 
 /*
+*   ABOUT Page
+*/
+.heading-style-h1_custom.fwd-about-hero-titles {
+    .line,
+    .word {
+    line-height: 0.8 !important;
+    }
+}
+
+/*
 *   SERVICES Page
 */
 @media screen and (min-width: 992px) {
