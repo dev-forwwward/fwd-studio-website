@@ -180,6 +180,39 @@ export function swiperInit() {
                 slideDuplicateActiveClass: "is-active",
             });
 
+
+            const aboutCardsSwiper = new Swiper($(this).find(".swiper.is-about-cards-swiper")[0], {
+                // speed: sliderDuration,
+                loop: false,
+                // autoHeight: false,
+                // centeredSlides: loopMode,
+                // followFinger: true,
+                freeMode: false,
+                slideToClickedSlide: false,
+                slidesPerView: 1.2,
+                spaceBetween: 16,
+                rewind: false,
+                mousewheel: {
+                    forceToAxis: true,
+                },
+                keyboard: {
+                    enabled: true,
+                    onlyInViewport: true,
+                },
+                breakpoints: {
+                    // mobile landscape
+                    480: {
+                        slidesPerView: 1.8,
+                        spaceBetween: 16,
+                    },
+                    // tablet
+                    768: {
+                        slidesPerView: 2.5,
+                        spaceBetween: 24,
+                    },
+                },
+            });
+
         }); //-- each .slider-main_component
     }
 }
