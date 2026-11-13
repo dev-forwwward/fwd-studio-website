@@ -843,6 +843,36 @@ body.contact-modal-open .modal-container  {
     }
 }
 
+/* Global .swiper-slide has min-width: 90% at ≤991px (Webflow), which overrides
+   Swiper's inline width and breaks snapping on the About cards slider */
+.is-about-cards-swiper .swiper-slide {
+    min-width: 0;
+}
+
+/* mwg003-card is absolutely positioned for the desktop scroll effect;
+   reset it to sit in the flow inside slides. Keep the aspect ratio, since the
+   card's image layer is absolute and would otherwise give it no height. */
+.swiper .mwg003-card {
+    position: relative;
+    transform: none;
+    top: auto;
+    left: auto;
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    height: auto;
+    aspect-ratio: 0.75;
+}
+
+/* Slider is a flex item in a row between 768–991px; without this, Swiper
+   grows to fit all slides and there is nothing to swipe */
+@media screen and (max-width: 991px) {
+    .slider-main_component.hide-desktop-view {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
 /*
 *   SERVICES Page
 */
