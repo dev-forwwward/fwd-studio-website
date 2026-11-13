@@ -11,6 +11,7 @@ import { shareInit } from './share.js';
 import { swiperInit } from './swiper.js';
 import { tabHoverInit } from './tab-hover.js';
 import { servicesInit } from './services.js';
+import { parallaxInit } from './parallax.js';
 
 mainInit();
 heroShowreelInit();
@@ -25,5 +26,6 @@ shareInit();
 modalScriptInit();
 articleReveal();
 servicesInit();
+parallaxInit();
 
 console.log("PRD - Loading main scripts loader");
