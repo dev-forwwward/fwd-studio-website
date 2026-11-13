@@ -457,6 +457,29 @@ export function mainInit() {
     }
 
 
+    // ABOUT PAGE - Hero Pin Effect
+    const aboutHeroPinText = document.querySelector('.to-pin-title');
+    const aboutHeroPinTextReference = document.querySelector('.pin-title-reference');
+    if (aboutHeroPinText && aboutHeroPinTextReference && window.innerWidth > 767) {
+        // Pin the title from the very first scroll pixel and release it once
+        // its top lines up with the top of the reference element
+        const getPinDistance = () =>
+            Math.max(
+                0,
+                aboutHeroPinTextReference.getBoundingClientRect().top -
+                aboutHeroPinText.getBoundingClientRect().top
+            );
+
+        ScrollTrigger.create({
+            trigger: aboutHeroPinText,
+            pin: aboutHeroPinText,
+            start: 0,
+            end: () => `+=${getPinDistance()}`,
+            pinSpacing: false,
+            invalidateOnRefresh: true,
+        });
+    }
+
     // ABOUT PAGE - Card Effect
     const root = document.querySelector('.mwg003');
     if (root) {
