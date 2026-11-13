@@ -8,27 +8,29 @@ export function parallaxInit() {
             if (parallaxItems.length > 0) {
 
                 parallaxItems.forEach((item) => {
-                    gsap.fromTo(item, {
-                        yPercent: ()=> {
-                            let yVal = -item.offsetHeight * window.innerHeight / 100 * .015;
-                            return yVal
-                        }
-                    },{
+                    gsap.timeline({
                         scrollTrigger: {
                             trigger: container,
                             start: "top top",
                             end: "bottom top",
                             scrub: true
                         },
-                        yPercent: ()=> {
-                            let yVal = item.offsetHeight * window.innerHeight / 100 * .08;
-                            if(window.innerWidth < 480) {
-                                yVal = item.offsetHeight * window.innerHeight / 100 * .25;
+                    })
+                        .fromTo(item, {
+                            yPercent: () => {
+                                let yVal = -item.offsetHeight * window.innerHeight / 100 * .02;
+                                return yVal
                             }
-                            return yVal
-                        },
-                        ease: "none"
-                    });
+                        }, {
+                            yPercent: () => {
+                                let yVal = item.offsetHeight * window.innerHeight / 100 * .1;
+                                if (window.innerWidth < 480) {
+                                    yVal = item.offsetHeight * window.innerHeight / 100 * .25;
+                                }
+                                return yVal
+                            },
+                            ease: "none"
+                        });
                 });
 
             }
