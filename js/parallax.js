@@ -18,14 +18,14 @@ export function parallaxInit() {
                     })
                         .fromTo(item, {
                             yPercent: () => {
-                                let yVal = -item.offsetHeight * window.innerHeight / 100 * .02;
+                                let yVal = item.offsetHeight * window.innerHeight / 100 * .04;
                                 return yVal
                             }
                         }, {
                             yPercent: () => {
-                                let yVal = item.offsetHeight * window.innerHeight / 100 * .1;
+                                let yVal = -item.offsetHeight * window.innerHeight / 100 * .04;
                                 if (window.innerWidth < 480) {
-                                    yVal = item.offsetHeight * window.innerHeight / 100 * .25;
+                                    yVal = -item.offsetHeight * window.innerHeight / 100 * .1;
                                 }
                                 return yVal
                             },
