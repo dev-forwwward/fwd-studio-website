@@ -18,10 +18,10 @@ export function parallaxInit() {
                         },
                     })
                         .to(item, {
-                            yPercent: () => {
-                                let yVal = -item.offsetHeight * window.innerHeight / 100 * .04;
+                            y: () => {
+                                let yVal = -item.offsetHeight * window.innerHeight * .002;
                                 if (window.innerWidth < 480) {
-                                    yVal = -item.offsetHeight * window.innerHeight / 100 * .1;
+                                    yVal = -item.offsetHeight * window.innerHeight * .005;
                                 }
                                 return yVal
                             },
