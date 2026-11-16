@@ -18,7 +18,8 @@ export function parallaxInit() {
                     })
                         .fromTo(item, {
                             yPercent: () => {
-                                let yVal = item.offsetHeight * window.innerHeight / 100 * .04;
+                                // let yVal = item.offsetHeight * window.innerHeight / 100 * .04;
+                                let yVal = 0;
                                 return yVal
                             }
                         }, {
