@@ -16,13 +16,7 @@ export function parallaxInit() {
                             scrub: true
                         },
                     })
-                        .fromTo(item, {
-                            yPercent: () => {
-                                // let yVal = item.offsetHeight * window.innerHeight / 100 * .04;
-                                let yVal = 0;
-                                return yVal
-                            }
-                        }, {
+                        .to(item, {
                             yPercent: () => {
                                 let yVal = -item.offsetHeight * window.innerHeight / 100 * .04;
                                 if (window.innerWidth < 480) {
@@ -32,6 +26,22 @@ export function parallaxInit() {
                             },
                             ease: "none"
                         });
+                    // .fromTo(item, {
+                    //     yPercent: () => {
+                    //         // let yVal = item.offsetHeight * window.innerHeight / 100 * .04;
+                    //         let yVal = 0;
+                    //         return yVal
+                    //     }
+                    // }, {
+                    //     yPercent: () => {
+                    //         let yVal = -item.offsetHeight * window.innerHeight / 100 * .04;
+                    //         if (window.innerWidth < 480) {
+                    //             yVal = -item.offsetHeight * window.innerHeight / 100 * .1;
+                    //         }
+                    //         return yVal
+                    //     },
+                    //     ease: "none"
+                    // });
                 });
 
             }
